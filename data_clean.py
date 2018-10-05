@@ -18,7 +18,7 @@ def main(input, output):
                     data_dict[tag] = [int(rssi)]
                 else:
                     data_dict[tag].append(int(rssi))
-            else:
+            elif tag == '-----End':
                 count += 1
                 if count == 2:
                     _, position = rssi.split('-----')
@@ -27,6 +27,8 @@ def main(input, output):
                     group_list.append(data_dict)
                     data_dict = {}
                     count = 0
+
+    print(group_list)
 
 
 
