@@ -41,16 +41,16 @@ def main(input, output):
         os.remove(output)
 
     with open(output, 'a') as f:
-        f.write('%d %d %d %d %d %s %s\n' % (1,2,3,4,5,'x','y'))
+        f.write('%d,%d,%d,%d,%d,%s,%s\n' % (1,2,3,4,5,'x','y'))
 
         for i in range(len(group_list)):
             for j in range(1, 6):
                 if str(j) not in group_list[i]:
-                    f.write('%.2f ' % 0)
+                    f.write('%.2f,' % 0)
                 else:
-                    f.write('%.2f ' % group_list[i][str(j)])
-            f.write('%s %s' % (cord_list[i][0], cord_list[i][1]))
-            f.write('\n')
+                    f.write('%.2f,' % group_list[i][str(j)])
+            f.write('%s,%s\n' % (cord_list[i][0], cord_list[i][1]))
+
 
     print('File convert done!')
 
@@ -62,7 +62,6 @@ if __name__ == "__main__":
         print("Please input openfile_name and savefile_name\n")
         exit(0)
     else:
-
         main(args[1], args[2])
 
 
