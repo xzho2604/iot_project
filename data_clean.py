@@ -13,7 +13,7 @@ def main(input, output):
     with open(input, 'r') as f:
         for l in f.readlines():
             tag, _, rssi = l.strip('\n').split(' ')
-            if tag != '-----End':
+            if tag != '-----End' and count == 1:
                 if tag not in data_dict:
                     data_dict[tag] = [int(rssi)]
                 else:
