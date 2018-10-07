@@ -9,6 +9,7 @@ Created on Sun Sep 30 16:35:21 2018
 # Fit a line, ``y = mx + c``, through some noisy data-points:
 import numpy as np
 import matplotlib.pyplot as plt
+import math
 
 #given input of x1,y1,r1  x2,y2,r2  x3,y3,r3 
 #output the best least squre fit of coordinates (u1,u2)
@@ -32,7 +33,7 @@ def trilocation(x1,y1,r1,x2,y2,r2,x3,y3,r3):
     A = np.vstack([v1, v2]).T
     
     m, c = np.linalg.lstsq(A, y,rcond=None)[0]
-    return m,c
+    return round(m,1),round(c,1)
 
 
 #plot the trilocation fit 
@@ -46,8 +47,8 @@ def plot_trilocation(x1,y1,r1,x2,y2,r2,x3,y3,r3,u1,u2):
     ax.cla() # clear things for fresh plot
     
     # change default range so that new circles will work
-    ax.set_xlim((0, 100))
-    ax.set_ylim((0, 100))
+    ax.set_xlim((0, 20))
+    ax.set_ylim((0, 20))
     
     plt.plot(u1, u2, 'bo')
     
@@ -57,12 +58,29 @@ def plot_trilocation(x1,y1,r1,x2,y2,r2,x3,y3,r3,u1,u2):
 
     return
 
+def get_dist(m,c,r):
+        return 10**((r - c)/m)
+
+v0 = [-71.20,-64.33,-81.67,-58.60,-69.50,7.3,2.5,0.22,0.20,0.13,0.22,0.2]
+#v0 =[-64.33,-65.83,-73.50,-60.00,-58.17,19.5,2.5,0.21,0.21,0.17,0.21,0.2]
+#v0 = [-63.40,-64.30,-72.60,-56.40,-67.50,13,2.7,0.20,0.20,0.20,0.20,0.2]
+coordinate = v0[5:7]
+#Base station Coordinates
+base = {0:[0,0], 1:[25,2], 2:[29.2,-1],3:[8.8,5],4:[17.4,0]}
 
 #give the base station input and range output predicted node x location 
-(x1,y1,r1,x2,y2,r2,x3,y3,r3) = (50,70,24,20,20,35,70,30,32)
-m,c = trilocation(x1,y1,r1,x2,y2,r2,x3,y3,r3)
-print("The Cooordinates of Node x is", m,c)
-plot_trilocation(x1,y1,r1,x2,y2,r2,x3,y3,r3,m,c)
+m = -18.549794068963205; c = -45.88914172179528     #constants of the least sqaure for RSSI
+distance = [round(get_dist(m,c ,r),1) for r in v0[:5]]       # distance for each base station
+print(distance)
+
+(x1,y1,r1,x2,y2,r2,x3,y3,r3) = (base[0][0],base[0][1],distance[0],base[3][0],base[3][1],distance[3],base[4][0],base[4][1],distance[4])
+u1,u2 = trilocation(x1,y1,r1,x2,y2,r2,x3,y3,r3)
+err = round(math.sqrt((u1-coordinate[0])**2 + (u2 - coordinate[1])**2),1)
+
+print("The Node X location is", u1,u2)
+print("the right location is " , coordinate)
+print("the error is ",err)
+plot_trilocation(x1,y1,r1,x2,y2,r2,x3,y3,r3,u1,u2)
 
 
 
