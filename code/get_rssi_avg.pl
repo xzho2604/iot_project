@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-
+use File::Basename;
 
 #take a list of file names output distance and avg RSSI
 foreach my $f (@ARGV) {
@@ -16,8 +16,10 @@ foreach my $f (@ARGV) {
     
     #calculate average and output distanc and RSSI
     my $avg = $total/$count;
+    $avg=sprintf("%.2f", $avg);
+    $f = basename($f);
     $f =~ /(.*)\.txt/;
-    print "$1 $avg";
+    print "$1 $avg\n";
     close F;
 }
 
