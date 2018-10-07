@@ -47,9 +47,8 @@ def plot_trilocation(x1,y1,r1,x2,y2,r2,x3,y3,r3,u1,u2):
     ax.cla() # clear things for fresh plot
     
     # change default range so that new circles will work
-    ax.set_xlim((0, 20))
-    ax.set_ylim((0, 20))
-    
+    ax.axis('equal')
+    ax.axis([0,50,0,50])
     plt.plot(u1, u2, 'bo')
     
     ax.add_artist(circle1)
@@ -72,7 +71,7 @@ base = {0:[0,0], 1:[25,2], 2:[29.2,-1],3:[8.8,5],4:[17.4,0]}
 m = -18.549794068963205; c = -45.88914172179528     #constants of the least sqaure for RSSI
 distance = [round(get_dist(m,c ,r),1) for r in v0[:5]]       # distance for each base station
 print(distance)
-
+print(base)
 (x1,y1,r1,x2,y2,r2,x3,y3,r3) = (base[0][0],base[0][1],distance[0],base[3][0],base[3][1],distance[3],base[4][0],base[4][1],distance[4])
 u1,u2 = trilocation(x1,y1,r1,x2,y2,r2,x3,y3,r3)
 err = round(math.sqrt((u1-coordinate[0])**2 + (u2 - coordinate[1])**2),1)
