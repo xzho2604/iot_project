@@ -1,7 +1,6 @@
 import numpy as np
 import sys
 import os
-import collections
 
 
 def main(input, output):
@@ -72,12 +71,12 @@ def main(input, output):
 
 if __name__ == "__main__":
 
-    # args = sys.argv
-    # if len(args) != 3:
-    #     print("Please input openfile_name and savefile_name\n")
-    #     exit(0)
-    # else:
-    #     main(args[1], args[2])
-    main('../data01/record03.txt', 'update_clean.txt')
+    args = sys.argv
+    if len(args) != 3:
+        print("Please input openfile_name and savefile_name\n")
+        exit(0)
+    else:
+        main(args[1], args[2])
+    # main('../data01/record03.txt', 'update_clean.txt')
 
 
