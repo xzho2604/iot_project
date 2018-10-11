@@ -136,9 +136,9 @@ print("=======================================")
 print("{:10.4f}".format(round(0,4)), "    ","({:4.1f},{:4.1f})".format(origin[0],origin[1]), v)
 
 #find the centre of the nearest 3 points as the predicted location of node x
-u1, u2 = find_gravity(near_xs,near_ys)
+nei= 3 #choice of number of neigbhours to predict
+u1, u2 = find_gravity(near_xs[:nei],near_ys[:nei])
 print("The Prediced    :({},{})".format(u1,u2))
 err = round(math.sqrt((u1-origin[0])**2 + (u2-origin[1])**2),1)
 print("The error is    :", err)
     
-

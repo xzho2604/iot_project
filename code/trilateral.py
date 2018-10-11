@@ -72,6 +72,12 @@ m = -18.549794068963205; c = -45.88914172179528     #constants of the least sqau
 distance = [round(get_dist(m,c ,r),1) for r in v0[:5]]       # distance for each base station
 print(distance)
 print(base)
+
+#find the 3 index of the strongest signal
+
+
+
+#trilateral localisation based on the 3 points
 (x1,y1,r1,x2,y2,r2,x3,y3,r3) = (base[0][0],base[0][1],distance[0],base[3][0],base[3][1],distance[3],base[4][0],base[4][1],distance[4])
 u1,u2 = trilocation(x1,y1,r1,x2,y2,r2,x3,y3,r3)
 err = round(math.sqrt((u1-coordinate[0])**2 + (u2 - coordinate[1])**2),1)
