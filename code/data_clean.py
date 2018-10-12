@@ -72,7 +72,7 @@ def main(input, output):
                 else:
                     f.write('%.2f,' % (count_list[i][str(k)]/sum))
             if str('5') not in count_list[i]:
-                f.write('%.2f,' % (0.0))
+                f.write('%.2f' % (0.0))
             else:
                 f.write('%.2f' % (count_list[i]['5']/sum))
             f.write('\n')
