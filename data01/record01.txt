@@ -3,7 +3,6 @@
 3 RSSI: -64
 5 RSSI: -67
 4 RSSI: -73
------End of Group-----
 3 RSSI: -58
 1 RSSI: -77
 5 RSSI: -58
@@ -19,7 +18,6 @@
 3 RSSI: -57
 5 RSSI: -62
 2 RSSI: -77
------End of Group-----
 3 RSSI: -55
 5 RSSI: -61
 2 RSSI: -83
@@ -32,7 +30,6 @@
 3 RSSI: -62
 5 RSSI: -76
 4 RSSI: -66
------End of Group-----
 3 RSSI: -64
 5 RSSI: -68
 3 RSSI: -68
@@ -46,7 +43,6 @@
 5 RSSI: -58
 4 RSSI: -64
 2 RSSI: -81
------End of Group-----
 3 RSSI: -59
 1 RSSI: -79
 5 RSSI: -64
@@ -62,7 +58,6 @@
 3 RSSI: -58
 5 RSSI: -62
 4 RSSI: -74
------End of Group-----
 3 RSSI: -57
 1 RSSI: -84
 5 RSSI: -57
@@ -78,7 +73,6 @@
 5 RSSI: -57
 4 RSSI: -68
 2 RSSI: -83
------End of Group-----
 3 RSSI: -66
 1 RSSI: -85
 5 RSSI: -60
@@ -95,7 +89,6 @@
 5 RSSI: -62
 4 RSSI: -68
 2 RSSI: -77
------End of Group-----
 3 RSSI: -60
 5 RSSI: -57
 4 RSSI: -66
@@ -109,7 +102,6 @@
 2 RSSI: -83
 5 RSSI: -51
 4 RSSI: -68
------End of Group-----
 5 RSSI: -53
 4 RSSI: -69
 3 RSSI: -57
@@ -124,7 +116,6 @@
 3 RSSI: -61
 1 RSSI: -74
 5 RSSI: -48
------End of Group-----
 3 RSSI: -54
 4 RSSI: -70
 1 RSSI: -78
@@ -137,7 +128,6 @@
 3 RSSI: -52
 1 RSSI: -77
 4 RSSI: -72
------End of Group-----
 3 RSSI: -52
 1 RSSI: -76
 4 RSSI: -79
@@ -150,7 +140,6 @@
 1 RSSI: -87
 4 RSSI: -64
 2 RSSI: -75
------End of Group-----
 3 RSSI: -58
 1 RSSI: -74
 4 RSSI: -66
@@ -164,7 +153,6 @@
 4 RSSI: -72
 3 RSSI: -72
 4 RSSI: -72
------End of Group-----
 3 RSSI: -61
 4 RSSI: -79
 3 RSSI: -60
@@ -174,7 +162,6 @@
 3 RSSI: -59
 4 RSSI: -78
 3 RSSI: -58
------End of Group-----
 3 RSSI: -52
 4 RSSI: -80
 3 RSSI: -64
@@ -185,7 +172,6 @@
 3 RSSI: -48
 4 RSSI: -69
 2 RSSI: -73
------End of Group-----
 3 RSSI: -57
 2 RSSI: -73
 3 RSSI: -66
@@ -198,7 +184,6 @@
 3 RSSI: -58
 4 RSSI: -76
 2 RSSI: -89
------End of Group-----
 3 RSSI: -65
 5 RSSI: -53
 4 RSSI: -79
@@ -216,7 +201,6 @@
 5 RSSI: -57
 4 RSSI: -64
 2 RSSI: -75
------End of Group-----
 3 RSSI: -58
 5 RSSI: -57
 4 RSSI: -63
@@ -234,7 +218,6 @@
 5 RSSI: -57
 4 RSSI: -82
 2 RSSI: -70
------End of Group-----
 3 RSSI: -54
 5 RSSI: -56
 4 RSSI: -81
@@ -251,7 +234,6 @@
 5 RSSI: -55
 4 RSSI: -76
 2 RSSI: -77
------End of Group-----
 3 RSSI: -54
 5 RSSI: -54
 4 RSSI: -74
@@ -268,7 +250,6 @@
 5 RSSI: -58
 4 RSSI: -80
 2 RSSI: -67
------End of Group-----
 3 RSSI: -54
 5 RSSI: -57
 4 RSSI: -80
@@ -285,7 +266,6 @@
 5 RSSI: -55
 4 RSSI: -81
 2 RSSI: -79
------End of Group-----
 3 RSSI: -46
 5 RSSI: -58
 2 RSSI: -75
@@ -301,7 +281,6 @@
 5 RSSI: -56
 4 RSSI: -78
 2 RSSI: -76
------End of Group-----
 3 RSSI: -59
 5 RSSI: -59
 4 RSSI: -77
@@ -319,7 +298,6 @@
 5 RSSI: -53
 4 RSSI: -78
 2 RSSI: -68
------End of Group-----
 3 RSSI: -67
 5 RSSI: -55
 2 RSSI: -70
@@ -335,7 +313,6 @@
 5 RSSI: -55
 4 RSSI: -79
 2 RSSI: -62
------End of Group-----
 3 RSSI: -67
 5 RSSI: -55
 4 RSSI: -74
@@ -351,7 +328,6 @@
 3 RSSI: -72
 5 RSSI: -81
 2 RSSI: -59
------End of Group-----
 3 RSSI: -56
 5 RSSI: -88
 4 RSSI: -79
@@ -366,7 +342,6 @@
 5 RSSI: -56
 4 RSSI: -82
 2 RSSI: -56
------End of Group-----
 5 RSSI: -56
 4 RSSI: -86
 2 RSSI: -57
@@ -379,7 +354,6 @@
 5 RSSI: -55
 4 RSSI: -87
 2 RSSI: -74
------End of Group-----
 5 RSSI: -55
 4 RSSI: -83
 2 RSSI: -82
@@ -394,7 +368,6 @@
 5 RSSI: -56
 4 RSSI: -66
 2 RSSI: -83
------End of Group-----
 3 RSSI: -68
 5 RSSI: -60
 4 RSSI: -67
@@ -412,7 +385,6 @@
 5 RSSI: -56
 4 RSSI: -65
 2 RSSI: -77
------End of Group-----
 3 RSSI: -55
 5 RSSI: -56
 4 RSSI: -71
@@ -430,7 +402,6 @@
 5 RSSI: -72
 4 RSSI: -82
 2 RSSI: -82
------End of Group-----
 3 RSSI: -50
 1 RSSI: -66
 5 RSSI: -74
