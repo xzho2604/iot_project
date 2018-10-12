@@ -47,8 +47,8 @@ def main(input, output):
         # print(group_list[i])
         # print(cord_list[i])
 
-    # if os.path.exists(output):
-    #     os.remove(output)
+    if os.path.exists(output):
+        os.remove(output)
 
     with open(output, 'a') as f:
         f.write('%d,%d,%d,%d,%d,%s,%s,%s,%s,%s,%s,%s\n' % (1,2,3,4,5,'x','y','w1','w2','w3','w4','w5'))
