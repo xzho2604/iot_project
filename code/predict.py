@@ -25,14 +25,6 @@ print(cwd)
 #v0=[-72.70,-69.60,-74.50,-63.90,-58.90,14.5,4,0.20,0.20,0.20,0.20,0.20]
 
 
-#v = list(map(lambda x: 10**(x/100),v) )
-v = v0[:5]        #sample vector 
-origin = v0[5:7]    #origin coordinates
-w = v0[7:]          #the weight of each base station reading
-
-
-nearest ={};
-coordinate_v = {}
 
 #assign weight according to weight_c
 def add_weight(weight_c,v):
@@ -111,34 +103,73 @@ def find_gravity(near_xs,near_ys):
 
 #find the top 3 smallest dot product coordinates
 #we have dot_val:[x,y]
-nearest = dot_product(v)
-order_nearest = sorted(nearest.items(), key=lambda kv: kv[1]) #[((5.7, 5.0), 0.0),...]
 
-#print(add_weight([0.8,0.8,0.2,0.2,0],[-1,-2,-3,-4,-5]))
+total_err = 0
+err_count = 0
 
-
-print("Dot_val:    Coordinates:")
-print("=======================================")
-near_xs = []
-near_ys = []
-for key in order_nearest:
-    ((x,y),dot_val) = key
+f = open('clean_test0.txt', 'r')
+for line in f.readlines():#
+    v0 = line.rstrip().split(',')
+    v0 = list(map(lambda x:float(x),v0 ))
+    #v = list(map(lambda x: 10**(x/100),v) )
+    v = v0[:5]        #sample vector 
+    origin = v0[5:7]    #origin coordinates
+    w = v0[7:]          #the weight of each base station reading
     
-    near_xs.append(x)
-    near_ys.append(y)
-#    #c = list(map(lambda x: round(math.log(x,10)*100,1),(nearest[key])))
-    print("{:10.4f}".format(round(dot_val,4)), "    ","({:4.1f},{:4.1f})".format(x,y), coordinate_v[(x,y)])
-   
+    print(v)
+    nearest ={};
+    coordinate_v = {}
 
-print()
-print("Original vector:      ")
-print("=======================================")
-print("{:10.4f}".format(round(0,4)), "    ","({:4.1f},{:4.1f})".format(origin[0],origin[1]), v)
 
-#find the centre of the nearest 3 points as the predicted location of node x
-nei= 3 #choice of number of neigbhours to predict
-u1, u2 = find_gravity(near_xs[:nei],near_ys[:nei])
-print("The Prediced    :({},{})".format(u1,u2))
-err = round(math.sqrt((u1-origin[0])**2 + (u2-origin[1])**2),1)
-print("The error is    :", err)
+    nearest = dot_product(v)
+    order_nearest = sorted(nearest.items(), key=lambda kv: kv[1]) #[((5.7, 5.0), 0.0),...]
     
+    
+    near_xs = []
+    near_ys = []
+    for key in order_nearest:
+        ((x,y),dot_val) = key
+        
+        near_xs.append(x)
+        near_ys.append(y)
+    
+    #print(add_weight([0.8,0.8,0.2,0.2,0],[-1,-2,-3,-4,-5]))
+    
+    '''
+    print("Dot_val:    Coordinates:")
+    print("=======================================")
+
+    for key in order_nearest:
+        ((x,y),dot_val) = key
+        
+        near_xs.append(x)
+        near_ys.append(y)
+    #    #c = list(map(lambda x: round(math.log(x,10)*100,1),(nearest[key])))
+        print("{:10.4f}".format(round(dot_val,4)), "    ","({:4.1f},{:4.1f})".format(x,y), coordinate_v[(x,y)])
+       
+    '''
+    
+    
+    print()
+    print("Original vector:      ")
+    print("=======================================")
+    print("{:10.4f}".format(round(0,4)), "    ","({:4.1f},{:4.1f})".format(origin[0],origin[1]), v)
+    
+    #find the centre of the nearest 3 points as the predicted location of node x
+    nei= 3 #choice of number of neigbhours to predict
+    u1, u2 = find_gravity(near_xs[:nei],near_ys[:nei])
+    print("The Prediced    :({},{})".format(u1,u2))
+    err = round(math.sqrt((u1-origin[0])**2 + (u2-origin[1])**2),1)
+    print("The error is    :", err)
+    
+    #update total_err and err_count
+    total_err += err
+    err_count += 1
+    
+
+f.close
+print("=======================================")
+print("the total error is: ", total_err/err_count)
+
+
+
