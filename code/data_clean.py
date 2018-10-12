@@ -46,8 +46,8 @@ def main(input, output):
         # print(group_list[i])
         # print(cord_list[i])
 
-    if os.path.exists(output):
-        os.remove(output)
+    # if os.path.exists(output):
+    #     os.remove(output)
 
     with open(output, 'a') as f:
         f.write('%d,%d,%d,%d,%d,%s,%s,%s,%s,%s,%s,%s\n' % (1,2,3,4,5,'x','y','w1','w2','w3','w4','w5'))
@@ -61,22 +61,31 @@ def main(input, output):
                     f.write('%.2f,' % group_list[i][str(j)])
             f.write('%s,%s,' % (cord_list[i][0], cord_list[i][1]))
             for s in range(1, 6):
-                sum += count_list[i][str(s)]
+
+                if str(s) in count_list[i]:
+                    sum += count_list[i][str(s)]
+
             for k in range(1, 5):
-                f.write('%.2f,' % (count_list[i][str(k)]/sum))
-            f.write('%.2f' % (count_list[i]['5']/sum))
+                if str(k) not in count_list[i]:
+                    f.write('%.2f,' % (0.0))
+                else:
+                    f.write('%.2f,' % (count_list[i][str(k)]/sum))
+            if str('5') not in count_list[i]:
+                f.write('%.2f,' % (0.0))
+            else:
+                f.write('%.2f' % (count_list[i]['5']/sum))
             f.write('\n')
     print('File convert done!')
 
 
 if __name__ == "__main__":
 
-    args = sys.argv
-    if len(args) != 3:
-        print("Please input openfile_name and savefile_name\n")
-        exit(0)
-    else:
-        main(args[1], args[2])
-    # main('../data01/record03.txt', 'update_clean.txt')
+    # args = sys.argv
+    # if len(args) != 3:
+    #     print("Please input openfile_name and savefile_name\n")
+    #     exit(0)
+    # else:
+    #     main(args[1], args[2])
+    main('../data01/record02.txt', 'update_clean_test.txt')
 
 
