@@ -107,10 +107,12 @@ def find_gravity(near_xs,near_ys):
 total_err = 0
 err_count = 0
 
-f = open('clean_test0.txt', 'r')
+f = open('clean_more_test.txt', 'r')
 for line in f.readlines():#
     v0 = line.rstrip().split(',')
+    print(v0)
     v0 = list(map(lambda x:float(x),v0 ))
+
     #v = list(map(lambda x: 10**(x/100),v) )
     v = v0[:5]        #sample vector 
     origin = v0[5:7]    #origin coordinates

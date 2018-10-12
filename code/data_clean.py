@@ -80,12 +80,12 @@ def main(input, output):
 
 if __name__ == "__main__":
 
-    # args = sys.argv
-    # if len(args) != 3:
-    #     print("Please input openfile_name and savefile_name\n")
-    #     exit(0)
-    # else:
-    #     main(args[1], args[2])
-    main('../data02/record04.txt', 'update_clean_test.txt')
+     args = sys.argv
+     if len(args) != 3:
+         print("Please input openfile_name and savefile_name\n")
+         exit(0)
+     else:
+         main(args[1], args[2])
+    #main('../data02/record04.txt', 'update_clean_test.txt')
 
 
