@@ -2,6 +2,7 @@ import numpy as np
 import sys
 import os
 
+debug = 1
 
 def main(input, output):
 
@@ -79,13 +80,23 @@ def main(input, output):
 
 
 if __name__ == "__main__":
+    args = sys.argv
 
-    # args = sys.argv
-    # if len(args) != 3:
-    #     print("Please input openfile_name and savefile_name\n")
-    #     exit(0)
-    # else:
-    #     main(args[1], args[2])
-    main('../data02/record04.txt', 'update_clean_test.txt')
+
+    if len(args) == 1:
+        debug = 1
+    else:
+        debug = 0
+
+    if not debug:
+        args = sys.argv
+        if len(args) != 3:
+            print("Please input openfile_name and savefile_name\n")
+            exit(0)
+        else:
+            main(args[1], args[2])
+    else:
+        main('../data02/record04.txt', 'update_clean_test.txt')
+
 
 
