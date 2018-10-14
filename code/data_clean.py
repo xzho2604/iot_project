@@ -2,6 +2,7 @@ import numpy as np
 import sys
 import os
 
+debug = 1
 
 def main(input, output):
 
@@ -46,8 +47,8 @@ def main(input, output):
         # print(group_list[i])
         # print(cord_list[i])
 
-    # if os.path.exists(output):
-    #     os.remove(output)
+    if os.path.exists(output):
+        os.remove(output)
 
     with open(output, 'a') as f:
         f.write('%d,%d,%d,%d,%d,%s,%s,%s,%s,%s,%s,%s\n' % (1,2,3,4,5,'x','y','w1','w2','w3','w4','w5'))
@@ -71,7 +72,7 @@ def main(input, output):
                 else:
                     f.write('%.2f,' % (count_list[i][str(k)]/sum))
             if str('5') not in count_list[i]:
-                f.write('%.2f,' % (0.0))
+                f.write('%.2f' % (0.0))
             else:
                 f.write('%.2f' % (count_list[i]['5']/sum))
             f.write('\n')
@@ -79,13 +80,21 @@ def main(input, output):
 
 
 if __name__ == "__main__":
+    args = sys.argv
 
-     args = sys.argv
-     if len(args) != 3:
-         print("Please input openfile_name and savefile_name\n")
-         exit(0)
-     else:
-         main(args[1], args[2])
-    #main('../data02/record04.txt', 'update_clean_test.txt')
 
+    if len(args) == 1:
+        debug = 1
+    else:
+        debug = 0
+
+    if not debug:
+        args = sys.argv
+        if len(args) != 3:
+            print("Please input openfile_name and savefile_name\n")
+            exit(0)
+        else:
+            main(args[1], args[2])
+    else:
+        main('../data02/record04.txt', 'update_clean_test.txt')
 

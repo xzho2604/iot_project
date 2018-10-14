@@ -8,6 +8,7 @@ Created on Fri Oct  5 12:29:28 2018
 import os
 import numpy as np
 import math
+import statistics 
 
 
 os.chdir("/Users/erikzhou/Desktop/git_prac/iot_project/data02")
@@ -71,15 +72,21 @@ def dot_product(v):
         
         
         #assign weight to vector
-        weight_c = [0.8,0.8,0.2,0.2,0]
+
+        #weight_c = [1,0,0,0,0]        
+        #weight_c = [20,1,0.2,0.2,0]
+        #weight_c = [0.8,0.8,0.2,0.2,0]
 
         #print(vector)
        # vector = list(map(lambda x: 10**(x/100),vector) )
-           
+        
+        #compute the difference between the test vector and sample vector
         vd = [round(a - b,1) for a, b in zip(vector, v)]
+      
+        #assign weight to compute the Euclidian distance
         #print("before weight:" , vd)
-        vd = [round(a * b,1) for a, b in zip(w, vd)]    #apply count weigth to the difference
-        vd = [round(a * b,1) for a, b in zip(add_weight(weight_c,v),vd)]
+       # vd = [round(a * b,1) for a, b in zip(w, vd)]     #sample reading freq weight
+        #vd = [round(a * b,1) for a, b in zip(add_weight(weight_c,v),vd)]    #RSSI strength weight
         #print("after weight:" , vd)
 
         #record the the dot product value and the coordinates in the dict
@@ -106,11 +113,12 @@ def find_gravity(near_xs,near_ys):
 
 total_err = 0
 err_count = 0
+err_ls = []
 
-f = open('clean_more_test.txt', 'r')
+#f = open('clean_more_test.txt', 'r')
+f = open('clean_test0.txt', 'r')
 for line in f.readlines():#
     v0 = line.rstrip().split(',')
-    print(v0)
     v0 = list(map(lambda x:float(x),v0 ))
 
     #v = list(map(lambda x: 10**(x/100),v) )
@@ -118,7 +126,6 @@ for line in f.readlines():#
     origin = v0[5:7]    #origin coordinates
     w = v0[7:]          #the weight of each base station reading
     
-    print(v)
     nearest ={};
     coordinate_v = {}
 
@@ -158,20 +165,23 @@ for line in f.readlines():#
     print("{:10.4f}".format(round(0,4)), "    ","({:4.1f},{:4.1f})".format(origin[0],origin[1]), v)
     
     #find the centre of the nearest 3 points as the predicted location of node x
-    nei= 3 #choice of number of neigbhours to predict
+    nei= 4 #choice of number of neigbhours to predict
     u1, u2 = find_gravity(near_xs[:nei],near_ys[:nei])
     print("The Prediced    :({},{})".format(u1,u2))
     err = round(math.sqrt((u1-origin[0])**2 + (u2-origin[1])**2),1)
     print("The error is    :", err)
     
-    #update total_err and err_count
+    #update total_err and err_count , err list
     total_err += err
     err_count += 1
+    err_ls.append(err)
     
 
 f.close
-print("=======================================")
-print("the total error is: ", total_err/err_count)
-
+print()
+print("=============== Summary ========================")
+print("The errors are       :" , err_ls)
+print("the average error is :", round((total_err/err_count),2))
+print("Err Standard Deviation:", round(statistics.stdev(err_ls),2))
 
 
