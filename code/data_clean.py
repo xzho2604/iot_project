@@ -44,7 +44,7 @@ def main(input, output):
             # print(value)
             group_list[i][key] = np.mean(value)
 
-        # print(group_list[i])
+
         # print(cord_list[i])
 
     if os.path.exists(output):
@@ -77,7 +77,7 @@ def main(input, output):
                 f.write('%.2f' % (count_list[i]['5']/sum))
             f.write('\n')
     print('File convert done!')
-
+    return group_list, cord_list
 
 if __name__ == "__main__":
     args = sys.argv
@@ -94,7 +94,7 @@ if __name__ == "__main__":
             print("Please input openfile_name and savefile_name\n")
             exit(0)
         else:
-            main(args[1], args[2])
+            _, _ = main(args[1], args[2])
     else:
-        main('../data02/record04.txt', 'update_clean_test.txt')
+        _, _ =  main('../data02/record04.txt', 'update_clean_test.txt')
 
