@@ -13,9 +13,9 @@ def file_deal(file_name):
         return mes
 
 def main():
-    tcp_socket = socket(AF_INET, SOCK_STREAM)
+    tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     #the receiver address
-    tcp_ip = '127.0.0.1'
+    tcp_ip = '172.20.10.3'
     tcp_port = 8888
     tcp_socket.connect((tcp_ip, tcp_port))
     while True:
