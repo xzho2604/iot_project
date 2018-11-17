@@ -39,7 +39,7 @@ v=[]
 
 nearest ={};
 coordinate_v = {}
-
+base = {}
 
 
 
@@ -136,6 +136,7 @@ def base_filter(v):
 #take a vector of v=[b1,b2,b3,b4,b5,x,y,w1,w2,w3,w4,w5] 
 #return (ux,uy,err)
 def predict(v0):
+
     global v 
     v= v0[:5]        #sample vector 
     global origin     #origin as the actual coordinates
@@ -143,6 +144,7 @@ def predict(v0):
     global w 
     w= v0[7:]          #the weight of each base station reading
     
+    global base
     #each base station coordinates
     base = {0:[0,0], 1:[25,2], 2:[29.2,-1],3:[8.8,5],4:[17.4,0]}
     #find the top 3 smallest dot product coordinates
@@ -173,10 +175,10 @@ def predict(v0):
     #find the centre of the nearest 3 points as the predicted location of node x
     nei= 3 #choice of number of neigbhours to predict
     u1, u2 = find_gravity(near_xs[:nei],near_ys[:nei])
-    u3,u4 = base_filter(v)
+    #u3,u4 = base_filter(v)
     
-    u5 = (u1+u3)/2
-    u6 = (u4+u2)/2
+    #u5 = (u1+u3)/2
+    #u6 = (u4+u2)/2
     print("The Prediced    :({},{})".format(u1,u2),origin)
     err = round(math.sqrt((u1-origin[0])**2 + (u2-origin[1])**2),1)
 #   err_new = round(math.sqrt((u5-origin[0])**2 + (u6-origin[1])**2),1)
@@ -185,9 +187,17 @@ def predict(v0):
     
     return(u1,u2,err)
     
+    
+#os.chdir("/Users/erikzhou/Desktop/git_prac/iot_project/data02")  
+#f = open('clean_test0.txt', 'r')
+#for line in f.readlines():#
+#    v0 = line.rstrip().split(',')
+#    v0 = list(map(lambda x:float(x),v0 ))
+#    predict(v0)
+    
 
-(ux,uy,error) = predict([-66.90,-80.00,-77.50,-67.00,-59.80,11.1,3.3,0.20,0.20,0.20,0.20,0.20])
-print(ux,uy,error)
+#(ux,uy,error) = predict([-66.90,-80.00,-77.50,-67.00,-59.80,11.1,3.3,0.20,0.20,0.20,0.20,0.20])
+#print(ux,uy,error)
 
 
     
