@@ -15,11 +15,16 @@ import time
 import sys
 import math
 
+
+from predict_single import *
+from data_clean import *
 from aiocoap import *
+from imageShow import *
 
 logging.basicConfig(level=logging.INFO)
 
-
+x = sys.arg[1]
+y = sys.arg[2]
 @asyncio.coroutine
 def main():
     y=0
@@ -129,9 +134,19 @@ def main():
     #x=1
     print(x, reading_num)
     with open('record.txt', 'at') as f:
-        f.write('-----End of Group-----\n')    
-        
+        f.write('-----End of Group-----'+x+','+y+'\n')
+
+    
+
     #print(math.pow(10,(y/10+14.482)/-16.102), "cm")
 
 if __name__ == "__main__":
     asyncio.get_event_loop().run_until_complete(main())
+    outputlist = data_clean('record.txt',write_file=False)[0]
+    print(outputlist)
+
+
+
+
+
+

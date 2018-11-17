@@ -10,18 +10,31 @@ import numpy as np
 import math
 
 
-os.chdir("/Users/erikzhou/Desktop/git_prac/iot_project/data02")
-cwd = os.getcwd()
-print(cwd)
+#os.chdir("/Users/erikzhou/Desktop/git_prac/iot_project/data02")
+#cwd = os.getcwd()
+#print(cwd)
+#v0 = [-71.20,-64.33,-81.67,-58.60,-69.50,7.3,2.5,0.22,0.20,0.13,0.22,0.2]
+#v0 =[-64.33,-65.83,-73.50,-60.00,-58.17,19.5,2.5,0.21,0.21,0.17,0.21,0.2]
+#v0 = [-63.40,-64.30,-72.60,-56.40,-67.50,13,2.7,0.20,0.20,0.20,0.20,0.2]
+#v0=[-59.40,-79.50,-68.25,-63.30,-73.80,2.3,2,0.21,0.21,0.17,0.21,0.2]
+#v0=[-71.60,-62.00,-85.11,-61.80,-65.60,24.2,4.4,0.20,0.20,0.18,0.20,0.2]
+
+#v0=[-66.90,-80.00,-77.50,-67.00,-59.80,11.1,3.3,0.20,0.20,0.20,0.20,0.20]
+#v0=[-70.50,-74.40,-79.00,-64.10,-48.90,14.5,2.8,0.20,0.20,0.20,0.20,0.20]
 #v0=[-72.70,-69.60,-74.50,-63.90,-58.90,14.5,4,0.20,0.20,0.20,0.20,0.20]
 
 
 #v = list(map(lambda x: 10**(x/100),v) )
 #input v as the vector of 5 base station reading
-v = v0[:5]        #sample vector 
+#v = v0[:5]        #sample vector 
 #origin as the actual coordinates
-origin = v0[5:7]    #origin coordinates
-w = v0[7:]          #the weight of each base station reading
+#origin = v0[5:7]    #origin coordinates
+#w = v0[7:]          #the weight of each base station reading
+
+original =[]
+w=[]
+v=[]
+
 
 
 nearest ={};
@@ -59,6 +72,8 @@ def add_weight(weight_c,v):
 
 #for a given test point reading predict x,y output
 def dot_product(v):
+    os.chdir("/Users/erikzhou/Desktop/git_prac/iot_project/data02")
+    cwd = os.getcwd()
     #read from test.txt file line by line:x1 x2 x3 x4 x5 x y
     f = open('clean_record.txt', 'r')
     for line in f.readlines():#reads the whole file into memory and returns its contents as a list of its lines.
@@ -120,7 +135,14 @@ def base_filter(v):
     
 #take a vector of v=[b1,b2,b3,b4,b5,x,y,w1,w2,w3,w4,w5] 
 #return (ux,uy,err)
-def predict(v):
+def predict(v0):
+    global v 
+    v= v0[:5]        #sample vector 
+    global origin     #origin as the actual coordinates
+    origin = v0[5:7]    #origin coordinates
+    global w 
+    w= v0[7:]          #the weight of each base station reading
+    
     #each base station coordinates
     base = {0:[0,0], 1:[25,2], 2:[29.2,-1],3:[8.8,5],4:[17.4,0]}
     #find the top 3 smallest dot product coordinates
@@ -155,7 +177,7 @@ def predict(v):
     
     u5 = (u1+u3)/2
     u6 = (u4+u2)/2
-    print("The Prediced    :({},{})".format(u1,u2), u5, u6)
+    print("The Prediced    :({},{})".format(u1,u2),origin)
     err = round(math.sqrt((u1-origin[0])**2 + (u2-origin[1])**2),1)
 #   err_new = round(math.sqrt((u5-origin[0])**2 + (u6-origin[1])**2),1)
     print("The error is    :", err)
@@ -164,7 +186,8 @@ def predict(v):
     return(u1,u2,err)
     
 
-(ux,uy,error) = predict(v)
+(ux,uy,error) = predict([-66.90,-80.00,-77.50,-67.00,-59.80,11.1,3.3,0.20,0.20,0.20,0.20,0.20])
+print(ux,uy,error)
 
 
     

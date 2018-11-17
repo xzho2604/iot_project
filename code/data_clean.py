@@ -4,7 +4,7 @@ import os
 
 debug = 1
 
-def main(input, output):
+def data_clean(input, output='123.txt', write_file=True):
 
     group_list = []
     data_dict = {}
@@ -46,21 +46,31 @@ def main(input, output):
 
 
         # print(cord_list[i])
+    output_lists = []
 
     if os.path.exists(output):
         os.remove(output)
 
     with open(output, 'a') as f:
-        f.write('%d,%d,%d,%d,%d,%s,%s,%s,%s,%s,%s,%s\n' % (1,2,3,4,5,'x','y','w1','w2','w3','w4','w5'))
+        if write_file:
+            f.write('%d,%d,%d,%d,%d,%s,%s,%s,%s,%s,%s,%s\n' % (1,2,3,4,5,'x','y','w1','w2','w3','w4','w5'))
 
         for i in range(len(group_list)):
+            output_list = []
             sum = 0
             for j in range(1, 6):
                 if str(j) not in group_list[i]:
-                    f.write('%.2f,' % 0)
+                    if write_file:
+                        f.write('%.2f,' % 0)
+                    output_list.append(0.0)
                 else:
-                    f.write('%.2f,' % group_list[i][str(j)])
-            f.write('%s,%s,' % (cord_list[i][0], cord_list[i][1]))
+                    if write_file:
+                        f.write('%.2f,' % group_list[i][str(j)])
+                    output_list.append(group_list[i][str(j)])
+            if write_file:
+                f.write('%s,%s,' % (cord_list[i][0], cord_list[i][1]))
+            output_list.append(float(cord_list[i][0]))
+            output_list.append(float(cord_list[i][1]))
             for s in range(1, 6):
 
                 if str(s) in count_list[i]:
@@ -68,16 +78,33 @@ def main(input, output):
 
             for k in range(1, 5):
                 if str(k) not in count_list[i]:
-                    f.write('%.2f,' % (0.0))
+                    if write_file:
+                        f.write('%.2f,' % (0.0))
+                    output_list.append(0.0)
                 else:
-                    f.write('%.2f,' % (count_list[i][str(k)]/sum))
+                    if write_file:
+                        f.write('%.2f,' % (count_list[i][str(k)]/sum))
+                    output_list.append(count_list[i][str(k)]/sum)
             if str('5') not in count_list[i]:
-                f.write('%.2f' % (0.0))
+                if write_file:
+                    f.write('%.2f' % (0.0))
+                output_list.append(0.0)
             else:
-                f.write('%.2f' % (count_list[i]['5']/sum))
-            f.write('\n')
+                if write_file:
+                    f.write('%.2f' % (count_list[i]['5']/sum))
+                output_list.append(count_list[i]['5']/sum)
+
+            if write_file:
+                f.write('\n')
+
+        output_lists.append(output_list)
     print('File convert done!')
-    return group_list, cord_list
+
+    if not write_file:
+        os.remove(output)
+
+    return output_lists
+
 
 if __name__ == "__main__":
     args = sys.argv
@@ -94,7 +121,10 @@ if __name__ == "__main__":
             print("Please input openfile_name and savefile_name\n")
             exit(0)
         else:
-            _, _ = main(args[1], args[2])
+            _ = data_clean(args[1], args[2])
     else:
-        _, _ =  main('../data02/record04.txt', 'update_clean_test.txt')
+        output_lists =  data_clean('../data02/record04.txt',write_file=False)
+        # print(output_lists)
+
+
 
