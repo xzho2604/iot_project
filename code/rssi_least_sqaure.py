@@ -17,11 +17,15 @@ dist = np.array([1.0, 3.0, 4.5, 7.0, 9.5, 12.5, 16.0, 19.0, 23.0, 26.0])        
 rssi = np.array([-47.0, -55.83, -55.93, -57.77, -67.53, -63.21, -71.21, -69.83, -70.66, -72.62])     #RSSI
 log_dist = np.array(list(map(lambda x: round(math.log10(x),2),dist)))   #transform dist to log10(dist)
 
-#rssi_read =  -70.03
+rssi_read =  -81.67
 #i = list(rssi).index(rssi_read)
 
 #print(log_dist)
 #print(dist)
+#test 13, -65.93;20.5 -69.28;8.9 -70.03
+
+
+
 
 def least_square(log_dist,rssi):    
     A = np.vstack([log_dist, np.ones(len(log_dist))]).T     
@@ -40,6 +44,6 @@ def get_dist(m,c,rssi_read):
 
 #calculations
 m,c = least_square(log_dist,rssi)
-distance = get_dist(m,c,-64.33)
+distance = get_dist(m,c,rssi_read)
 
 print("m, c:{}, {} and the distance for {} is {}".format(m,c,rssi_read,round(distance,1)))

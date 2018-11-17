@@ -79,7 +79,7 @@ def dot_product(v):
         
         
         #assign weight to vector
-        weight_c = [0.8,0.8,0.2,0.2,0]
+        weight_c = [1,0,0,0,0]
 
         #print(vector)
        # vector = list(map(lambda x: 10**(x/100),vector) )
@@ -105,16 +105,31 @@ def find_gravity(near_xs,near_ys):
     u2 = round(np.mean(near_ys),1)
     
     return u1, u2
+
+#take sample vectore RSSI readings from 5 base stations return the index of the best 3
+#and then find the centre of the 3 readings
+def base_filter(v):
+    best_index=[]
+    for _ in range(3):
+        best_index.append(v.index(max(v)))
+        v.remove(max(v))
+        
+    #now we have the best index find the centre of the coordinates
+    #x coordinates of the best base stations
+    xs = [base[x][0] for x in best_index]
+    ys = [base[y][1] for y in best_index]
     
+    return find_gravity(xs,ys)
+
     
 
-
+#each base station coordinates
+base = {0:[0,0], 1:[25,2], 2:[29.2,-1],3:[8.8,5],4:[17.4,0]}
 #find the top 3 smallest dot product coordinates
 #we have dot_val:[x,y]
 nearest = dot_product(v)
 order_nearest = sorted(nearest.items(), key=lambda kv: kv[1]) #[((5.7, 5.0), 0.0),...]
 
-#print(add_weight([0.8,0.8,0.2,0.2,0],[-1,-2,-3,-4,-5]))
 
 
 print("Dot_val:    Coordinates:")
@@ -138,7 +153,13 @@ print("{:10.4f}".format(round(0,4)), "    ","({:4.1f},{:4.1f})".format(origin[0]
 #find the centre of the nearest 3 points as the predicted location of node x
 nei= 3 #choice of number of neigbhours to predict
 u1, u2 = find_gravity(near_xs[:nei],near_ys[:nei])
-print("The Prediced    :({},{})".format(u1,u2))
+u3,u4 = base_filter(v)
+
+u5 = (u1+u3)/2
+u6 = (u4+u2)/2
+print("The Prediced    :({},{})".format(u1,u2), u5, u6)
 err = round(math.sqrt((u1-origin[0])**2 + (u2-origin[1])**2),1)
+err_new = round(math.sqrt((u5-origin[0])**2 + (u6-origin[1])**2),1)
 print("The error is    :", err)
+print("The new error is    :", err_new)
     
