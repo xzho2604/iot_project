@@ -31,6 +31,17 @@ def least_square(log_dist,rssi):
     A = np.vstack([log_dist, np.ones(len(log_dist))]).T     
     m, c = np.linalg.lstsq(A, rssi,rcond=-1)[0]
     
+    co = [[m],[c]]
+    p = np.matmul(A,co)
+    pv = np.squeeze(np.asarray(p))
+    e = rssi - pv
+    print(np.dot(e,pv))
+    plen = math.sqrt(np.dot(pv,pv))
+    blen = math.sqrt(np.dot(rssi,rssi))
+    print(plen/blen)
+    
+    
+    
     return m,c
 
 #from the  rssi_read= mlog10(dist) + c get the distance
@@ -45,5 +56,7 @@ def get_dist(m,c,rssi_read):
 #calculations
 m,c = least_square(log_dist,rssi)
 distance = get_dist(m,c,rssi_read)
+
+
 
 print("m, c:{}, {} and the distance for {} is {}".format(m,c,rssi_read,round(distance,1)))
