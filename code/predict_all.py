@@ -184,7 +184,7 @@ for line in f.readlines():#
     print("{:10.4f}".format(round(0,4)), "    ","({:4.1f},{:4.1f})".format(origin[0],origin[1]), v)
     
     #find the centre of the nearest 3 points as the predicted location of node x
-    nei= 3 #choice of number of neigbhours to predict
+    nei= 5 #choice of number of neigbhours to predict
     u1, u2 = find_gravity(near_xs[:nei],near_ys[:nei])
     
     #u3,u4 = base_filter(v)  #base filter prediction
