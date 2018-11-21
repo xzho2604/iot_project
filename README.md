@@ -1,14 +1,8 @@
-# iot_project
+## Demo Video Link
+The Red dot on the map is the prediction point where the blue cross is the actual point of the obejct
+https://youtu.be/RjC4G1ahejQ
 
-predict.py:
-    take a vector of [s1..s5,x,y] 
-    ouput the nearest neiboughour predicted coordinates
+## Project Description
+Using RSSI from sensor tag for indoor localisation with accuracy of 2 metres.
 
-get_rssi_avg.pl:
-    take a list of args of files ./get_rssi_avg.pl f1 f2 f3 ..
-    output: Distance , AvgRSS
-
-add_brace:
-    take a file input and add [] to the begining and end of each line 
- 
  
